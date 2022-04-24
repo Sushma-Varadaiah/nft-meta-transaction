@@ -1,0 +1,2 @@
+#unique number for chain/net (compatible with both mac and linux)
+npx --no-install run-with-testrpc --networkId 1337 --chainId 1337 "$@" 'gsn start'
