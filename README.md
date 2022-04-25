@@ -20,7 +20,7 @@ Meta transactions are not natively implemeted to any of the existing platforms, 
 
 2. Using already existing third party setup for meta transactions like GSN - Gas Station Network
 
-We will go with 2 approch that is using GSN(version-v2) third party decentralised system in order to leverage meta transactions in our Dapp.
+We will go with 2 approch, that is using GSN(version-v2) third party decentralised system in order to leverage meta transactions in our Dapp.
 
 ### GSN - Gas Station Network
 
@@ -28,7 +28,7 @@ GAS is a decentralised system which acts as a mediator who facilitates a gasless
 
 Advantages of using GSN includes - End user can pay the gas fee using a fiat currency or token. Also there will be less hassle from the UX side as well so end user onboarding will be quick and easy.
 
-Architecture of the GAS system -
+### Architecture of the GAS system -
 (Ref from - https://docs.opengsn.org/#architecture)
 
 ![Architecture](./md-images/architecture.jpg)
@@ -58,17 +58,18 @@ Since the trusted forwarder is the one who is forwarding the transaction to the 
 **RelayHub** -
 RelayHub connects users running clients, relay servers and paymasters so that participants don't need to know about or trust each other.
 
-RelayHub helps clients discover the best third-party relay server when the dapp's relay servers are down.
-prevents third-party relay servers from censoring transactions
+RelayHub also does the following -
+-   RelayHub helps clients discover the best third-party relay server when the dapp's relay servers are down.
+-   Prevents third-party relay servers from censoring transactions
 rebalances the ETH of relay servers serving their own Paymasters
-Ensures Paymasters pay back relay servers for gas fees plus transaction fees.
+-   Ensures Paymasters pay back relay servers for gas fees plus transaction fees.
 
 ### Summary of the GSN process
-Client uses web3 provider and signs the transactions
-With GSN in place Web3 provider will send the signed transaction to one of the relayers in the network through RealyHub
-RealyHub is the center of the system
-RelayHub gets the paymaster's approval before making the transaction to the system
-RelayHub Collects the actual fees from the system (receipeient smart contract) to reemburse the relay server for it's effort.
+-   Client uses web3 provider and signs the transactions
+-   With GSN in place Web3 provider will send the signed transaction to one of the relayers in the network through RealyHub
+-   RealyHub is the center of the system
+-   RelayHub gets the paymaster's approval before making the transaction to the system
+-   RelayHub Collects the actual fees from the system (receipient smart contract) to reemburse the relay server for it's effort.
 
 ## Using GSN in minting ERC-1155 tokens
 ERC-1155 is a standard interface for contracts that manage multiple token types. A single deployed contract may include any combination of fungible tokens, non-fungible tokens or other configurations (e.g. semi-fungible tokens).
@@ -79,22 +80,25 @@ For the sake of simplicity we will be using only mint functionality not batch mi
 Goal of this project is to integrate GSN to a standard ERC-1155 smart contract and user must be able to mint ERC-1155 NFTs without paying the gas fee (with 0 eth in there wallet).
 
 ## Folder structure
-app - contains simple web application content
+`app` - contains simple web application content
 
-contracts - contains solidity smart contracts
+`contracts` - contains solidity smart contracts
 
-migrations - contains migration scripts for deploying the smart contracts
+`migrations` - contains migration scripts for deploying the smart contracts
 
 ## Running the project
 
 1. Run `yarn install `
 2. Run `yarn run gsn-with-ganache` to run local ganache and bring up GSN contracts and relayer.
-3. In another terminal, run `truffle migrate` to install MetaCoin
-4. Run `yarn run dev` to run metacoin demo on `http://localhost:8080`
+3. In another terminal, run `truffle migrate` to install MetaNFTTransaction
+4. Run `yarn run dev` to run MetaNFTTransaction demo on `http://localhost:8080`
 5. open a browser, and you can mint NFTs with no eth in your (metamask) account
 
-## Snapshots of the project running in browser
+## Snapshots of the Dapp
 
 
 #### Notes:
 Project is tested for local ganache network.
+
+You will come across an error which says "paymaster rejected in local view call to 'relayCall()' : isTrustedForwarder: reverted" - This is because you need to whitelist the trusted forwarder address. (please refer to the **Paymaster** section to know about whitelisting the trusted forwarder)
+

@@ -26,7 +26,6 @@ const App = {
     web3.eth.net.getId(async function (err, networkId) {
       if (parseInt(networkId) < 1000) { // We're on testnet/
         network = networks[networkId]
-        //MetaTransactionNFT.deployed = () => MetaTransactionNFT.at(network.metacoin)
       } else { // We're on ganache
         console.log('Using local ganache')
         network = {
@@ -163,7 +162,7 @@ window.addEventListener('load', async () => {
   if (window.ethereum) {
     console.warn(
       'Using web3 detected from external source.' +
-      ' If you find that your accounts don\'t appear or you have 0 MetaCoin,' +
+      ' If you find that your accounts don\'t appear or you have 0 MetaNFTTransaction,' +
       ' ensure you\'ve configured that source properly.' +
       ' (and allowed the app to access MetaMask.)' +
       ' If using MetaMask, see the following link.' +
