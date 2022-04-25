@@ -95,8 +95,11 @@ Goal of this project is to integrate GSN to a standard ERC-1155 smart contract a
 5. open a browser, and you can mint NFTs with no eth in your (metamask) account
 
 ## Snapshots of the Dapp
+![image1](./md-images/1.png)
 
+![image2](./md-images/2.png)
 
+![image3](./md-images/3.png)
 #### Notes:
 Project is tested for local ganache network.
 
